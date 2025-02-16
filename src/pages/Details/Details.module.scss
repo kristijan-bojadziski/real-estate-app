@@ -1,0 +1,37 @@
+.ribbon {
+  position: absolute;
+  top: 120px;
+  right: 24px;
+}
+
+.card {
+  border: 1px solid #ddd;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.galleria .p-galleria-thumbnail {
+  border: 2px solid #ccc;
+}
+
+.galleria .p-galleria-thumbnail:hover {
+  border: 2px solid #007bff;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+}
+
+.font-bold {
+  font-weight: bold;
+}

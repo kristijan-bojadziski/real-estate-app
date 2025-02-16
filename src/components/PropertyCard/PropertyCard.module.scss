@@ -1,0 +1,57 @@
+.card {
+  position: relative;
+  width: 100%;
+  max-width: 445px;
+  flex-grow: 1;
+  height: fit-content;
+
+  :global(.p-card-body) {
+    padding: 0;
+  }
+
+  &:hover {
+    cursor: pointer;
+
+    .image {
+      transform: scale(1.1);
+    }
+  }
+}
+
+.imageWrapper {
+  overflow: hidden;
+}
+
+.image {
+  width: 100%;
+  object-fit: cover;
+  height: 300px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.ribbon {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  z-index: 10;
+}
+
+.views {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  z-index: 10;
+}
+
+.description {
+  display: -webkit-box;
+  -webkit-line-clamp: 3; // Limit to 3 lines
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 4.5em; // Adjust based on line height
+  line-height: 1.5em; // Match the text's line height
+}
