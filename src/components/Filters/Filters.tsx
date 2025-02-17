@@ -17,9 +17,9 @@ export const Filters = () => {
   };
 
   return (
-    <div className="mt-6">
+    <div className="mt-2">
       <h3 className={`${style.headline} mb-3`}>Filters</h3>
-      <div className="flex flex-column gap-5">
+      <div className="flex flex-column gap-2">
         <div className="flex flex-column gap-2">
           <label className="text-sm font-medium">Location</label>
           <Dropdown

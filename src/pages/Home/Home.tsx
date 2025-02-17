@@ -1,38 +1,42 @@
 import { useEffect, useState } from "react";
-// Store
+// Stores
 import { useFiltersStore } from "store/filter.store";
+import { usePropertiesStore } from "store/properties.store";
 // Layout
 import { MainLayout } from "layouts/MainLayout";
 // Components
-import { PropertyCard } from "components/PropertyCard/PropertyCard";
-import { EmptyState } from "components/EmptyState/EmptyState";
-// Hooks
-import { useProperties } from "hooks/useProperties";
+import { PropertyCard, EmptyState } from "components";
 // Models
 import { Property } from "models/property";
 
 export const Home = () => {
-  const { data: properties } = useProperties();
-  const { filters } = useFiltersStore();
+  const properties = usePropertiesStore(state => state.properties);
+  const { filters, searchTerm } = useFiltersStore();
   const [filteredProperties, setFilteredProperties] = useState<Property[]>([]);
 
   useEffect(() => {
-    if (!properties) return;
+    if (!properties.length) return;
 
     const filtered = properties.filter(property => {
-      const conditions = [
+      const searchCondition = searchTerm
+        ? property.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          property.description.toLowerCase().includes(searchTerm.toLowerCase())
+        : true;
+
+      const filterConditions = [
         filters.location && filters.location !== "all" ? property.location === filters.location : true,
         filters.squareMeters ? property.squareMeters <= filters.squareMeters : true,
         filters.rooms ? property.rooms <= filters.rooms : true,
         filters.type && filters.type !== "all" ? property.type === filters.type : true,
         filters.status && filters.status !== "all" ? property.status === filters.status : true,
+        searchCondition,
       ];
 
-      return conditions.every(Boolean);
+      return filterConditions.every(Boolean);
     });
 
     setFilteredProperties(filtered);
-  }, [properties, filters]);
+  }, [properties, filters, searchTerm]);
 
   return (
     <MainLayout>

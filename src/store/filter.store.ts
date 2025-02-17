@@ -5,15 +5,17 @@ import { Filter } from "models/filters";
 
 const defaultFilters: Filter = {
   location: "all",
-  squareMeters: 100,
+  squareMeters: 120,
   rooms: 6,
   type: "all",
   status: "all",
 };
 
 type FiltersState = {
+  searchTerm: string;
   filters: Filter;
   hasAppliedFilters: boolean;
+  setSearch: (searchTerm: string) => void;
   updateFilters: (newFilters: Partial<Filter>) => void;
   clearFilters: () => void;
 };
@@ -21,14 +23,15 @@ type FiltersState = {
 export const useFiltersStore = create<FiltersState>()(
   persist(
     set => ({
+      searchTerm: "",
       filters: defaultFilters,
       hasAppliedFilters: false,
+      setSearch: newSearchTerm => set(() => ({ searchTerm: newSearchTerm })),
       updateFilters: newFilters =>
         set(state => ({
           filters: { ...state.filters, ...newFilters },
           hasAppliedFilters: true,
         })),
-
       clearFilters: () =>
         set({
           filters: defaultFilters,

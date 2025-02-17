@@ -1,6 +1,6 @@
 import { JSX } from "react";
 // Components
-import { Header } from "components/Header/Header";
+import { Sidebar } from "components";
 
 interface Props {
   children: JSX.Element;
@@ -9,7 +9,7 @@ interface Props {
 export const MainLayout = ({ children }: Props) => {
   return (
     <div className="flex flex-row relative">
-      <Header />
+      <Sidebar />
       {children}
     </div>
   );

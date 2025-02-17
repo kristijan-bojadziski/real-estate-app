@@ -1,6 +1,6 @@
 import { useParams } from "react-router";
-// Hooks
-import { useProperties } from "hooks/useProperties";
+// Store
+import { usePropertiesStore } from "store/properties.store";
 // Layout
 import { MainLayout } from "layouts/MainLayout";
 // Components
@@ -15,8 +15,7 @@ import style from "./Details.module.scss";
 
 export const Details = () => {
   const { id } = useParams<string>();
-  const { data: properties } = useProperties();
-  const property = properties?.filter(property => property.id === id).pop();
+  const property = usePropertiesStore(state => (id ? state.getPropertyById(id) : undefined));
 
   if (!property) {
     return <div>Property not found.</div>;
@@ -56,7 +55,7 @@ export const Details = () => {
               src={property.heroImage.fields.file.url}
               alt={property.heroImage.fields.title}
               className={style.image}
-              style={{ objectFit: "cover", maxHeight: "400px" }}
+              style={{ objectFit: "cover", maxHeight: "400px", maxWidth: "550px" }}
             />
           </div>
           <div className="md:w-1/2">

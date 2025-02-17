@@ -31,28 +31,30 @@ export const PropertyCard = ({ property }: Props) => {
   return (
     <Card key={property.id} className={style.card} onClick={() => navigate(`/details/${property.id}`)}>
       {renderStatus()}
-      <div className={style.views}>
-        <Eye size={20} weight="bold" />
-        <span>{property.views}</span>
-      </div>
       {property.heroImage && (
         <div className={style.imageWrapper}>
           <img src={property.heroImage.fields.file.url} alt={property.heroImage.fields.title} className={style.image} />
         </div>
       )}
       <div className="flex flex-column gap-1 px-3">
-        <div className="flex align-items-center gap-4 pt-2">
-          <div className="flex align-items-center gap-2">
-            <MapPin size={20} weight="bold" />
-            <span>{property.location}</span>
+        <div className="flex align-items-center justify-content-between gap-2 pt-2">
+          <div className="flex flex-row gap-4">
+            <div className="flex align-items-center gap-2">
+              <MapPin size={20} weight="bold" />
+              <span>{property.location}</span>
+            </div>
+            <div className="flex align-items-center gap-2">
+              <Ruler size={20} weight="bold" />
+              <span>{property.squareMeters} m²</span>
+            </div>
+            <div className="flex align-items-center gap-2">
+              <Bed size={20} weight="bold" />
+              <span>{property.rooms}</span>
+            </div>
           </div>
           <div className="flex align-items-center gap-2">
-            <Ruler size={20} weight="bold" />
-            <span>{property.squareMeters} m²</span>
-          </div>
-          <div className="flex align-items-center gap-2">
-            <Bed size={20} weight="bold" />
-            <span>{property.rooms}</span>
+            <Eye size={20} weight="bold" />
+            <span>{property.views}</span>
           </div>
         </div>
         <div className="flex align-items-center justify-content-between pt-2 pb-2">

@@ -14,6 +14,7 @@ export interface Property {
   images: ContentfulImage[];
   type: "apartment" | "house" | "villa";
   status: "available" | "sold" | "pending";
+  createdBy: string;
 }
 
 export interface PropertyEntry extends EntrySkeletonType {

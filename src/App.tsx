@@ -1,11 +1,8 @@
 import { Route, Routes } from "react-router";
 // Pages
-import { Home } from "pages/Home/Home";
-import { Details } from "pages/Details/Details";
-import { Login } from "pages/Login/Login";
-import { NotFound } from "pages/NotFound/NotFound";
+import { Home, Details, Login, NotFound } from "pages";
 // Components
-import ProtectedRoute from "components/ProtectedRoute/ProtectedRoute";
+import { ProtectedRoute } from "components";
 // Styles
 import "src/App.css";
 
@@ -17,7 +14,6 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/details/:id" element={<Details />} />
       </Route>
-      {/* Catch-all route for 404 pages */}
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

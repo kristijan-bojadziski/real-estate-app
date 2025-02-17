@@ -8,6 +8,11 @@ type AuthState = {
   logout: () => void;
 };
 
+const clearStores = () => {
+  localStorage.removeItem("properties");
+  localStorage.removeItem("filters");
+};
+
 export const useAuthStore = create<AuthState>()(
   persist(
     set => ({
@@ -22,6 +27,7 @@ export const useAuthStore = create<AuthState>()(
       },
       logout: () => {
         set({ isAuthenticated: false, username: null });
+        clearStores();
       },
     }),
     { name: "auth" }

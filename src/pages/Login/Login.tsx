@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
-// Store
+// Stores
 import { useAuthStore } from "store/auth.store";
+import { usePropertiesStore } from "store/properties.store";
+// Api
+import { getProperties } from "api/api";
 // Components
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import { Password } from "primereact/password";
 import { Image } from "primereact/image";
-// Image
+// Images
 import logo from "assets/logo.svg";
 // Styles
 import style from "./Login.module.scss";
@@ -15,12 +18,23 @@ import style from "./Login.module.scss";
 export const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  const { login } = useAuthStore();
+  const login = useAuthStore(state => state.login);
+  const setProperties = usePropertiesStore(state => state.setProperties);
 
-  const handleLogin = () => {
-    if (login(username, password)) {
-      navigate("/");
+  const handleLogin = async () => {
+    setIsLoading(true);
+    try {
+      if (login(username, password)) {
+        const properties = await getProperties();
+        setProperties(properties);
+        navigate("/");
+      }
+    } catch (error) {
+      console.error("Failed to fetch properties:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -44,7 +58,7 @@ export const Login = () => {
           onChange={e => setPassword(e.target.value)}
           feedback={false}
         />
-        <Button className="justify-content-center mt-6" onClick={handleLogin}>
+        <Button className="justify-content-center mt-6" onClick={handleLogin} loading={isLoading}>
           Login
         </Button>
       </div>
