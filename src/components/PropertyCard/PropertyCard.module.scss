@@ -1,7 +1,7 @@
 .card {
   position: relative;
   width: 100%;
-  max-width: 445px;
+  max-width: 500px;
   flex-grow: 1;
   height: fit-content;
 
@@ -43,5 +43,6 @@
   overflow: hidden;
   text-overflow: ellipsis;
   max-height: 4.5em;
+  min-height: 4.5em;
   line-height: 1.5em;
 }

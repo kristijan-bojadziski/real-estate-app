@@ -29,7 +29,14 @@ export const PropertyCard = ({ property }: Props) => {
   };
 
   return (
-    <Card key={property.id} className={style.card} onClick={() => navigate(`/details/${property.id}`)}>
+    <Card
+      key={property.id}
+      className={style.card}
+      onClick={() => {
+        navigate(`/details/${property.id}`);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }}
+    >
       {renderStatus()}
       {property.heroImage && (
         <div className={style.imageWrapper}>

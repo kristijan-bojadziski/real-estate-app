@@ -85,17 +85,19 @@ export const Details = () => {
           </div>
         </div>
         <p className="text-gray-600 leading-relaxed">{property.description}</p>
-        <div className="flex flex-column ">
-          <h3 className="text-xl font-semibold mb-4">Gallery</h3>
-          <Galleria
-            value={galleriaItems}
-            numVisible={5}
-            item={itemTemplate}
-            thumbnail={thumbnailTemplate}
-            className="w-full"
-            style={{ maxWidth: "100%" }}
-          />
-        </div>
+        {galleriaItems.length > 0 && (
+          <div className="flex flex-column ">
+            <h3 className="text-xl font-semibold mb-4">Gallery</h3>
+            <Galleria
+              value={galleriaItems}
+              numVisible={5}
+              item={itemTemplate}
+              thumbnail={thumbnailTemplate}
+              className="w-full"
+              style={{ maxWidth: "100%" }}
+            />
+          </div>
+        )}
       </div>
     </MainLayout>
   );

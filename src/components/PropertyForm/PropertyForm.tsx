@@ -118,7 +118,12 @@ export const PropertyForm = ({ initialValues, onSubmit }: Props) => {
           name="squareMeters"
           control={control}
           render={({ field }) => (
-            <InputNumber id="squareMeters" value={field.value ?? 0} onChange={e => field.onChange(e.value ?? 0)} />
+            <InputNumber
+              id="squareMeters"
+              value={field.value ?? 0}
+              onChange={e => field.onChange(e.value ?? 0)}
+              max={200}
+            />
           )}
         />
       </div>
@@ -128,7 +133,7 @@ export const PropertyForm = ({ initialValues, onSubmit }: Props) => {
           name="rooms"
           control={control}
           render={({ field }) => (
-            <InputNumber id="rooms" value={field.value ?? 1} onChange={e => field.onChange(e.value ?? 1)} />
+            <InputNumber id="rooms" value={field.value ?? 1} onChange={e => field.onChange(e.value ?? 1)} max={6} />
           )}
         />
       </div>
