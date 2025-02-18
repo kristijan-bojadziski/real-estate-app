@@ -80,10 +80,7 @@ export const ActionButtons = () => {
           visible={open === "edit"}
           position="bottom"
           style={{ width: "50vw" }}
-          onHide={() => {
-            if (open === null) return;
-            setOpen(null);
-          }}
+          onHide={() => setOpen(null)}
           draggable={false}
           resizable={false}
         >

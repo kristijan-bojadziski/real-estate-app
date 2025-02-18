@@ -49,6 +49,7 @@ export const PropertyForm = ({ initialValues, onSubmit }: Props) => {
     const file = event.files[0];
     const imageUrl = await onImageUpload(file);
     setValue("heroImage.fields.file.url", imageUrl);
+    event.options.clear();
   };
 
   const onImageUpload = async (file: File) => {
